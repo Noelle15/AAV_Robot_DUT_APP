@@ -49,9 +49,7 @@ def nearest_neighbor_algorithm(first_point, list_of_points):
     cycle = {}
     initial_point =  first_point
     cycle[0] = list_of_unvisited_points.get(first_point)
-    print("cycle début ", cycle)
     del list_of_unvisited_points[first_point]
-    print(list_of_unvisited_points)
     key = 1
     
     #min_distance = calcul_distance(initial_point,list_of_unvisited_points[1])
@@ -59,38 +57,22 @@ def nearest_neighbor_algorithm(first_point, list_of_points):
         i=0
         for j in list_of_unvisited_points:
             if i == 0:
-                print("le point avec lequel on teste  ",list_of_unvisited_points[j] )
-                #print("PPPPPOOIIINNTTT IMP",cycle[initial_point] )
                 min_distance = calcul_distance(list_of_points[initial_point], list_of_unvisited_points[j])
                 closest = j
-                print("diastance minimale",min_distance)
             else :
-                print("le point   ",list_of_unvisited_points[j] )
                 dist = calcul_distance(list_of_points[initial_point], list_of_unvisited_points[j])
-                print ("distance",dist)
                 if dist <  min_distance:
                     min_distance = dist
                     closest = j
-                    print(cycle)
                 elif dist == min_distance:
                     continue
             i=i+1
 
-        print("AVANT",list_of_unvisited_points[closest])
         cycle[key] = list_of_unvisited_points[closest]
         initial_point = closest
         del list_of_unvisited_points[closest]
-        print ("le plus proche",closest)
-        print("APRES",closest)
-        print(cycle)
         key = key+1
-
-    print("TTTTEEEESSSSSSTTTTT--------------------calcul ciruit ",round(calcul_circuit(list_of_points, list(cycle.keys()))))
-    print("fonction points non visités ",list_of_unvisited_points)
-    print("fonction liste points  ",list_of_points)
-    print("fonction cycle ",cycle)
     return list(cycle.keys())
-
 
 def great_algorithm(first_point, list_of_points):
     """
@@ -219,9 +201,9 @@ def test_nearest_neighbor():
     test_small_nearest_neighbor()
     #test_big_nearest_neighbor()
 
-test_calcul_distance()
+#test_calcul_distance()
 #test_basic_function()
 #nearest_neighbor_algorithm((1, 3), get_small_list_of_points())
-#test_nearest_neighbor()
+test_nearest_neighbor()
 
 
