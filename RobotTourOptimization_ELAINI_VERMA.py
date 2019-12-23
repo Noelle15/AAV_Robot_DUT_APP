@@ -5,6 +5,8 @@ import itertools
 import random
 
 #Calculate the distance between two points.
+
+
 def calcul_distance(first_point_value, second_point_value):
     
     sq1 = (first_point_value[0] - second_point_value[0]) * \
@@ -14,6 +16,8 @@ def calcul_distance(first_point_value, second_point_value):
     return math.sqrt(sq1+sq2)
 
 #Calculate the circuit 
+
+
 def calcul_circuit(list_of_points, cycle):
    
     d = 0
@@ -143,6 +147,7 @@ def get_small_list_of_points():
     }
     return list_of_points
 
+
 def get_tricky_points():
     list_of_points = {
         0: (0, 0),
@@ -154,6 +159,7 @@ def get_tricky_points():
         6: (0, -1),
     }
     return list_of_points
+
 
 def test_calcul_distance():
     a = (-3, -2)
@@ -171,7 +177,6 @@ def test_calcul_min_circuit():
 
 def test_calcul_circuit():
     list_of_points = get_small_list_of_points()
-
     cycle = list(list_of_points.keys())
     distance = calcul_circuit(list_of_points, cycle)
     assert round(distance, 3) == 38.483
@@ -179,6 +184,7 @@ def test_calcul_circuit():
 
 def test_return_sized():
     list_of_points = get_small_list_of_points()
+    
     first_point = 0
     result = nearest_neighbor_algorithm(first_point, list_of_points)
     assert len(result) == 10
@@ -192,8 +198,6 @@ def test_small_nearest_neighbor():
     result = nearest_neighbor_algorithm(first_point, list_of_points)
     assert len(result) == 10
     assert result[0] == first_point
-    print("--------------------calcul ciruit ",
-          round(calcul_circuit(list_of_points, result)))
     assert round(calcul_circuit(list_of_points, result)) <= 27
 
 
@@ -209,9 +213,6 @@ def test_small_better_algorithm():
     result = great_algorithm(first_point, list_of_points)
     assert len(result) == 10
     assert result[0] == first_point
-    print("chaine resultat",result)
-    print("calcul circuit",calcul_circuit(list_of_points,result))
-    """I will add some tests here"""
 
 
 def test_big_better_algorithm():
@@ -227,12 +228,9 @@ def test_small_optimal_algorithm():
     assert len(result) == 10
     assert result[0] == first_point
     circuit_cost = calcul_circuit(list_of_points, result)
-    print("result",result)
     assert round(circuit_cost) <= 27
     assert round(circuit_cost, 2) == 24.75
     assert result == [0, 2, 3, 1, 7, 5, 9, 6, 8, 4]
-
-    """I will add some tests here"""
 
 
 def test_big_optimal_algorithm():
@@ -249,6 +247,7 @@ def test_tricky_nearest_neighbor():
     assert result[0] == first_point
     assert round(calcul_circuit(list_of_points, result)) <= 80
 
+    
 def test_tricky_better_algorithm():
     list_of_points = get_tricky_points()
 
@@ -258,6 +257,7 @@ def test_tricky_better_algorithm():
     assert result[0] == first_point
     assert round(calcul_circuit(list_of_points, result)) < 80
 
+    
 def test_tricky_optimal_algorithm():
     list_of_points = get_tricky_points()
 
@@ -268,6 +268,7 @@ def test_tricky_optimal_algorithm():
     assert round(calcul_circuit(list_of_points, result)) == 64
 
 "our tests"
+
 
 def test_basic_function():
     test_calcul_distance()
