@@ -33,16 +33,17 @@ def nearest_neighbor_algorithm(first_point, list_of_points):
     """
         Searches for the nearest point to the initial point then delete it 
         from the list_of_unvisited_points.
-        The nearest point becomes the initial point.
+        The nearest point becomes the initial point at each iteration.
 
     """
 
     list_of_unvisited_points = list_of_points.copy()
     cycle = {}
+    # Start with the first point
     initial_point = first_point
     cycle[0] = list_of_unvisited_points.get(first_point)
     del list_of_unvisited_points[first_point]
-
+    # Find the nearest point to the initial point
     while (len(list_of_unvisited_points) > 0):
         i = 0
         for j in list_of_unvisited_points:
@@ -59,9 +60,10 @@ def nearest_neighbor_algorithm(first_point, list_of_points):
                 elif dist == min_distance:
                     continue
             i = i + 1
-
+        # Add the nearest point found to the cycle
         cycle[closest] = list_of_unvisited_points[closest]
         initial_point = closest
+        # Delete that point from the list of unvisited points
         del list_of_unvisited_points[closest]
 
     return list(cycle.keys())
@@ -75,8 +77,10 @@ def great_algorithm(first_point, list_of_points):
     """
     cycle = list()
     order = list(list_of_points.keys())
+    # Initialise the minimal distance
     circuit_min  = calcul_circuit(list_of_points, list(list_of_points.keys()))
     i = 1
+    # Compare the distance of every 3 points 
     while i<(len(list_of_points) - 2):
         for j in range (i+2,(len(list_of_points.keys()))):
             pair = order[i:j].copy()
@@ -101,11 +105,14 @@ def optimal_algorithm(first_point, list_of_points):
     """
     cycle = list()
     cycle_min = {}
+    # Initialise the minimal distance
     circuit_min = calcul_circuit(list_of_points, list(list_of_points.keys()))
-
+    # Generate all the possibilities of cycles 
     for order in (itertools.permutations(list_of_points)):
+        # Fix the first point 
         if (order[0] == first_point):
             circuit_total = calcul_circuit(list_of_points, order)
+            # Only keep the cycle with the shortest distance
             if circuit_total < circuit_min:
                 circuit_min = circuit_total
                 cycle = [i for i in order]
@@ -117,7 +124,7 @@ def optimal_algorithm(first_point, list_of_points):
 
     for i in cycle:
         cycle_min[i] = list_of_points[i]
-    print (list(cycle_min.keys()))
+        
     return list(cycle_min.keys())
 
 
