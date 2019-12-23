@@ -4,10 +4,12 @@ import operator
 import itertools
 import random
 
-#Calculate the distance between two points.
-
 
 def calcul_distance(first_point_value, second_point_value):
+    """
+        Calculate the distance between two points.
+        
+    """
     
     sq1 = (first_point_value[0] - second_point_value[0]) * \
         (first_point_value[0] - second_point_value[0])
@@ -15,10 +17,12 @@ def calcul_distance(first_point_value, second_point_value):
         (first_point_value[1] - second_point_value[1])
     return math.sqrt(sq1+sq2)
 
-#Calculate the circuit 
-
 
 def calcul_circuit(list_of_points, cycle):
+    """
+        Calculate the circuit. 
+    
+    """
    
     d = 0
     # Calculate and sum the distance between two points of the cycle
