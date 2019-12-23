@@ -19,6 +19,8 @@ However, it is faster than the Optimal Algorithm.
 
 We solved the problem by taking 3 points and permute their order to find the combination that is the shortest. Then, we move to the next group of 3 points and do the same. All of this is done until we reach the end of the list_of_points. This method enables to have a short circuit in a small amount of time. 
 
+We were'nt able to achieve the ends of this algorithm because the the result is not better than the Nearest one.
+
 ### Optimal
 This algorithm finds the shortest path by comparing the length of every possible circuit. It gives the best result but takes some time to run (around 7 seconds for a list of 10 points).
 As far as the tests are concerned, they both work.
